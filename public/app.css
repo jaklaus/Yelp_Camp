@@ -1,0 +1,21 @@
+#page-body {
+	padding-bottom: 10em;
+}
+
+#campground-row {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+form.campground-form {
+	margin-top: 3em;
+}
+
+.campground-form {
+	width: 50%;
+	margin: 0 auto;
+}
+
+nav.navbar {
+	border-radius: 0;
+}
