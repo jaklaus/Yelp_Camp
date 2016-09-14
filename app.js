@@ -1,35 +1,15 @@
 var express = require('express'),
 	app = express(),
 	mongoose = require('mongoose'),
-	bodyParser = require('body-parser');
-	
+	bodyParser = require('body-parser'),
+	Campground = require('./models/campground'),
+	Comment = require('./models/comment'),
+	seedDB = require('./seed');
 
-// Set Up Database
-
+// connect to Database
 mongoose.connect("mongodb://localhost/yelp_camp");
-// set up mongo Schema
-var campgroundSchema = new mongoose.Schema({
-	name: String,
-	image: String,
-	description: String
-});
-// set up mongo model
-var Campground = mongoose.model('Campground', campgroundSchema);
 
-// Campground.create({
-	
-// 	name: 'Red Dawns',
-// 	image: 'https://hd.unsplash.com/photo-1434987215074-1caeadb28cf8',
-// 	description: 'This is a wonderful campsite'
-
-// }, function(err, campground){
-// 	if(err){
-// 		console.log(err);
-// 	} else {
-// 		console.log('campground logged to DB');
-// 		console.log(campground);
-// 	}
-// });
+seedDB();
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -48,14 +28,14 @@ app.get('/campgrounds', function(req,res){
 		if(err){
 			console.log(err);
 		} else {
-			res.render('index', {campgrounds:campgrounds});
+			res.render('campgrounds/index', {campgrounds:campgrounds});
 		}
 	});
 });
 
 // NEW ROUTE
 app.get('/campgrounds/new', function(req,res){
-	res.render('newCampground');
+	res.render('campgrounds/new');
 })
 
 // CREATE ROUTE 
@@ -82,17 +62,51 @@ app.post('/campgrounds', function(req,res){
 app.get("/campgrounds/:id", function(req,res){
 	var campgroundId = req.params.id;
 
-	Campground.findById(campgroundId, function(err,campground){
+	Campground.findById(campgroundId).populate("comments").exec(function(err,campground){
 		if(err){
 			console.log(err);
 		} else {
-			res.render("show", {campground:campground});
+			res.render("campgrounds/show", {campground:campground});
 		}
 	});
+});
 
+// COMMENT ROUTES
+// NEW COMMENT ROUTE
+app.get('/campgrounds/:id/comments/new', function(req,res){
+	var campgroundId = req.params.id;
+
+	Campground.findById(campgroundId, function(err, campground){
+		if(err){
+			throw err;
+		} else {
+			res.render("comments/new", {campground:campground});
+		}
+	});
+});
+
+// COMMENT POST ROUTE
+app.post('/campgrounds/:id/comments', function(req,res){
+	var campgroundId = req.params.id;
+	var newComment = req.body.comment;
 	
-})
-
+	Campground.findById(campgroundId, function(err, campground){
+		if(err){
+			console.log(err);
+		} else {
+			Comment.create(newComment, function(err, comment){
+				if(err){
+					console.log(err);
+				} else {
+					campground.comments.push(comment);
+					campground.save();
+					res.redirect('/campgrounds/'+ campground._id);
+				}
+			});
+		}
+		
+	});
+});
 
 app.listen(3000, function(res,req){
 	console.log("yelp camp v1 server running!")
