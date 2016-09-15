@@ -3,22 +3,22 @@
 <div class="container">
 	<div class="row">
   <div class="col-md-3">
-  	<h2>Yelp Camp</h2>
+  	<p class="lead">Yelp Camp</p>
 		<div class="list-group">
-		  <a href="#" class="list-group-item active">
-		    Cras justo odio
-		  </a>
-		  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-		  <a href="#" class="list-group-item">Morbi leo risus</a>
-		  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-		  <a href="#" class="list-group-item">Vestibulum at eros</a>
+		  <a href="#" class="list-group-item active">Info 1</a>
+		  <a href="#" class="list-group-item">Info 2</a>
+		  <a href="#" class="list-group-item">Info 3</a>
 		</div>
   </div>
 	<div class="col-md-9">
 	  	<div class="thumbnail">
-			<img src="<%= campground.image %>">
-			<h3><%= campground.name %></h3>
-			<p><%= campground.description %></p>
+			<img class="img-responsive" src="<%= campground.image %>">
+			<div class="campground-info">
+				<h3 class="pull-right">$9.00/night</h3>
+				<h3 class="pull-left"><%= campground.name %></h3>
+				<p id="campground-description"><%= campground.description %></p>
+			</div>
+			
 
 	  	</div>
 	  	<div class="comment-div">
@@ -26,9 +26,15 @@
 	  			<a class="btn btn-primary btn-sm" href="/campgrounds/<%= campground._id %>/comments/new">New Comment</a>
 	  		</div>
 			<% campground.comments.forEach(function(comment){ %>
-			<p class=text-right><strong><%= moment(comment.date).format('MM/DD/YYYY') %></strong></p>
-			<p class="text-left"> <strong><%= comment.author %></strong></p>
-			<p><%= comment.body %></p>
+			<div class="comment-header">
+				
+				<p id="comment-author"><strong><%= comment.author %></strong></p>
+				<p id="comment-date"><strong><%= moment(comment.date).format('MM/DD/YYYY') %></strong></p>
+			</div>
+			<div id="comment-body">
+				<p><%= comment.body %></p>
+			</div>
+			
 			<% }) %>
 	  	</div>
 	</div>

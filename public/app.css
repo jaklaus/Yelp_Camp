@@ -24,8 +24,15 @@ div.btn-group-vertical {
 	display: block;
 }
 
+div.thumbnail {
+	padding: 0;
+}
+.campground-info {
+	padding: 0 1em;
+}
+
 .comment-div {
-	background-color: #F2F2ED;
+	background-color: #F7F7F7;
 	border: 1px solid #D3D3D3;
 	border-radius: 3px;
 	padding: 1em;
@@ -34,4 +41,24 @@ div.btn-group-vertical {
 .comment-button {
 	border-bottom: 1px solid #D3D3D3;
 	padding-bottom: 1em;
+}
+
+.comment-header {
+	width: 100%;
+}
+
+#comment-author {
+	float: left;
+}
+
+#comment-date {
+	float: right;
+}
+
+#comment-body {
+	clear: both;
+}
+
+#campground-description {
+	clear: both;
 }
