@@ -4,12 +4,15 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	Campground = require('./models/campground'),
 	Comment = require('./models/comment'),
+	moment = require('moment'),
+
 	seedDB = require('./seed');
 
 // connect to Database
 mongoose.connect("mongodb://localhost/yelp_camp");
 
 seedDB();
+moment().format();
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -66,7 +69,7 @@ app.get("/campgrounds/:id", function(req,res){
 		if(err){
 			console.log(err);
 		} else {
-			res.render("campgrounds/show", {campground:campground});
+			res.render("campgrounds/show", {campground:campground, moment: moment});
 		}
 	});
 });

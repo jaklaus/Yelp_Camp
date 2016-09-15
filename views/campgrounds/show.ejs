@@ -1,16 +1,41 @@
 <% include ../partials/header.ejs %>
 
-<h1>SHOW PAGE</h1>
+<div class="container">
+	<div class="row">
+  <div class="col-md-3">
+  	<h2>Yelp Camp</h2>
+		<div class="list-group">
+		  <a href="#" class="list-group-item active">
+		    Cras justo odio
+		  </a>
+		  <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+		  <a href="#" class="list-group-item">Morbi leo risus</a>
+		  <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+		  <a href="#" class="list-group-item">Vestibulum at eros</a>
+		</div>
+  </div>
+	<div class="col-md-9">
+	  	<div class="thumbnail">
+			<img src="<%= campground.image %>">
+			<h3><%= campground.name %></h3>
+			<p><%= campground.description %></p>
 
-<h2><%= campground.name %></h2>
+	  	</div>
+	  	<div class="comment-div">
+	  		<div class="comment-button text-right">
+	  			<a class="btn btn-primary btn-sm" href="/campgrounds/<%= campground._id %>/comments/new">New Comment</a>
+	  		</div>
+			<% campground.comments.forEach(function(comment){ %>
+			<p class=text-right><strong><%= moment(comment.date).format('MM/DD/YYYY') %></strong></p>
+			<p class="text-left"> <strong><%= comment.author %></strong></p>
+			<p><%= comment.body %></p>
+			<% }) %>
+	  	</div>
+	</div>
+  	</div>
+  		
+</div>
 
-<img width="400px" src="<%= campground.image %>">
-<p><%= campground.description %></p>
-<h3>COMMENTS</h3>
-<% campground.comments.forEach(function(comment){ %>
-	<p><strong><%= comment.author %></strong> - <%= comment.body %></p>
-	<% }) %>
 
-<a href="/campgrounds/<%= campground._id %>/comments/new">New Comment</a>
 
 <% include ../partials/footer.ejs %>

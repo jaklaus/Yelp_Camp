@@ -19,3 +19,19 @@ form.campground-form {
 nav.navbar {
 	border-radius: 0;
 }
+
+div.btn-group-vertical {
+	display: block;
+}
+
+.comment-div {
+	background-color: #F2F2ED;
+	border: 1px solid #D3D3D3;
+	border-radius: 3px;
+	padding: 1em;
+}
+
+.comment-button {
+	border-bottom: 1px solid #D3D3D3;
+	padding-bottom: 1em;
+}
