@@ -13,11 +13,18 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span> Yelp Camp</a>
     </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
+    <!-- Left Nav Area -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
         <li><a href="/campgrounds">Campgrounds</a></li>
+        <% if(!currentUser){ %>
+         <% } else { %>
+            <li><a href="/campgrounds/new">New Camp</a></li>
+         <% } %>
+      </ul>
+    <!-- Right Nav Area -->
+      <ul class="nav navbar-nav navbar-right">
         <% if(!currentUser){ %>
             <li><a href="/login">Login</a></li>
             <li><a href="/register">Sign Up</a></li>

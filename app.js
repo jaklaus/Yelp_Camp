@@ -73,13 +73,19 @@ app.post('/campgrounds', isLoggedIn, function(req,res){
 	var campgroundName = req.body.campgroundName;
 	var campgroundImg = req.body.campgroundImg;
 	var campgroundDescription = req.body.campgroundDescription;
-	var newCampground = {name: campgroundName, image: campgroundImg, description: campgroundDescription};
+	var author = {
+		id: req.user._id,
+		username: req.user.username
+	};
+	var newCampground = {name: campgroundName, image: campgroundImg, description: campgroundDescription, author:author};
 
 	// add to campgrounds DB
 	Campground.create(newCampground, function(err, campground){
+		console.log(req.user);
 		if(err){
 			console.log(err);
 		} else {
+			console.log(campground);
 			res.redirect('/campgrounds');
 		}
 	});
@@ -117,7 +123,8 @@ app.get('/campgrounds/:id/comments/new', isLoggedIn,  function(req,res){
 // COMMENT POST ROUTE
 app.post('/campgrounds/:id/comments', isLoggedIn, function(req,res){
 	var campgroundId = req.params.id;
-	var newComment = req.body.comment;
+
+	var newComment = { author: req.user.username, body: req.body.commentBody};
 	
 	Campground.findById(campgroundId, function(err, campground){
 		if(err){

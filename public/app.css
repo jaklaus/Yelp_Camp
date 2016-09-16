@@ -31,6 +31,13 @@ div.thumbnail {
 	padding: 0 1em;
 }
 
+.campground-info #submit-user{
+	padding-top: 1em;
+}
+.campground-info h3{
+	margin-top: 0;
+}
+
 .comment-div {
 	background-color: #F7F7F7;
 	border: 1px solid #D3D3D3;
