@@ -37,6 +37,12 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// add currentUser
+app.use(function(req,res, next){
+	res.locals.currentUser = req.user;
+	next();
+});
+
 // ROOT ROUTE
 app.get('/', function(req,res){
 	res.render('home');
@@ -56,12 +62,12 @@ app.get('/campgrounds', function(req,res){
 });
 
 // NEW ROUTE
-app.get('/campgrounds/new', function(req,res){
+app.get('/campgrounds/new', isLoggedIn, function(req,res){
 	res.render('campgrounds/new');
 })
 
 // CREATE ROUTE 
-app.post('/campgrounds', function(req,res){
+app.post('/campgrounds', isLoggedIn, function(req,res){
 
 	// retrieve and store form information
 	var campgroundName = req.body.campgroundName;
@@ -96,7 +102,7 @@ app.get("/campgrounds/:id", function(req,res){
 // COMMENT ROUTES
 //  =============
 // NEW COMMENT ROUTE
-app.get('/campgrounds/:id/comments/new', function(req,res){
+app.get('/campgrounds/:id/comments/new', isLoggedIn,  function(req,res){
 	var campgroundId = req.params.id;
 
 	Campground.findById(campgroundId, function(err, campground){
@@ -109,7 +115,7 @@ app.get('/campgrounds/:id/comments/new', function(req,res){
 });
 
 // COMMENT POST ROUTE
-app.post('/campgrounds/:id/comments', function(req,res){
+app.post('/campgrounds/:id/comments', isLoggedIn, function(req,res){
 	var campgroundId = req.params.id;
 	var newComment = req.body.comment;
 	
@@ -173,6 +179,15 @@ app.get('/logout', function(req,res){
 	req.logout();
 	res.redirect('/campgrounds');
 });
+
+// function to check if user is logged in
+function isLoggedIn(req,res, next){
+	if(req.isAuthenticated()){
+		return next();
+	} else {
+		res.redirect('/login');
+	}
+}
 
 app.listen(3000, function(res,req){
 	console.log("yelp camp v1 server running!")
