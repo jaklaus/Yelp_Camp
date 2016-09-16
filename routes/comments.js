@@ -20,7 +20,7 @@ router.get('/new', isLoggedIn,  function(req,res){
 router.post('/', isLoggedIn, function(req,res){
 	var campgroundId = req.params.id;
 
-	var newComment = { author: req.user.username, body: req.body.commentBody};
+	var newComment = { author: {id: req.user._id, username:req.user.username}, body: req.body.commentBody};
 	
 	Campground.findById(campgroundId, function(err, campground){
 		if(err){

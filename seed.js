@@ -22,36 +22,36 @@ var data = [
 
 function seedDB(){
 	Campground.remove({}, function(err){
-		if(err){
-			throw err;
-		} else {
-			console.log("campgrounds removed with Seed file");
-		}
-	});
-	// add campgrounds
-	data.forEach(function(seed){
-		Campground.create(seed, function(err, campground){
-			if(err){
-				throw err;
-			} else {
-				console.log("added campground");
-				// add comments
-				Comment.create({author: "TEST AUTH", body: "TEST BODY"}, function(err, comment){
-					if(err){
-						console.log(err);
-					} else {
-						campground.comments.push(comment);
-						campground.save(function(err, campground){
-							if(err){
-								console.log(err);
-							} else {
-								console.log("comment added")
-							}
-						});
-					}
-				});
-			}
-		});
+	// 	if(err){
+	// 		throw err;
+	// 	} else {
+	// 		console.log("campgrounds removed with Seed file");
+	// 	}
+	// });
+	// // add campgrounds
+	// data.forEach(function(seed){
+	// 	Campground.create(seed, function(err, campground){
+	// 		if(err){
+	// 			throw err;
+	// 		} else {
+	// 			console.log("added campground");
+	// 			// add comments
+	// 			Comment.create({author: "TEST AUTH", body: "TEST BODY"}, function(err, comment){
+	// 				if(err){
+	// 					console.log(err);
+	// 				} else {
+	// 					campground.comments.push(comment);
+	// 					campground.save(function(err, campground){
+	// 						if(err){
+	// 							console.log(err);
+	// 						} else {
+	// 							console.log("comment added")
+	// 						}
+	// 					});
+	// 				}
+	// 			});
+	// 		}
+	// 	});
 	});
 }
 

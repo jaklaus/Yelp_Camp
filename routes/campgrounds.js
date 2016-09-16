@@ -37,7 +37,6 @@ router.post('/', isLoggedIn, function(req,res){
 
 	// add to campgrounds DB
 	Campground.create(newCampground, function(err, campground){
-		console.log(req.user);
 		if(err){
 			console.log(err);
 		} else {

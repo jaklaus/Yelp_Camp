@@ -1,7 +1,14 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+	User = require('./user')
 
 var commentSchema = new mongoose.Schema({
-	author: String,
+	author: {
+		id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User"
+		},
+		username: String
+	},
 	body: String,
 	date: { type: Date, default: Date.now }
 });

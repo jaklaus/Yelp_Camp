@@ -30,7 +30,7 @@
 			<% campground.comments.forEach(function(comment){ %>
 			<div class="comment-header">
 				
-				<p id="comment-author"><strong><%= comment.author %></strong></p>
+				<p id="comment-author"><strong><%= comment.author.username %></strong></p>
 				<p id="comment-date"><strong><%= moment(comment.date).format('MM/DD/YYYY') %></strong></p>
 			</div>
 			<div id="comment-body">

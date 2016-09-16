@@ -25,7 +25,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
 // seed database
-seedDB();
+// seedDB();
+
 // add moment js
 moment().format();
 
