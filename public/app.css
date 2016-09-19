@@ -77,3 +77,12 @@ div.thumbnail {
 ul.footer-nav {
 	margin: 0 2em;
 }
+
+#edit-buttons {
+	display: inline-flex;
+	margin: 1em 0em 1em 0em;
+}
+
+#edit-buttons button {
+	margin-right: 1em;
+}

@@ -77,6 +77,18 @@ router.put('/:id', ownerAuth,  function(req, res){
 
 });
 
+// DELETE ROUTE
+router.delete('/:id', ownerAuth, function(req, res){
+	Campground.findByIdAndRemove(req.params.id, function(err, campground){
+		if(err){
+			console.log(err);
+			res.redirect('/campgrounds');
+		} else {
+			res.redirect('/campgrounds');
+		}
+	});
+});
+
 // function to check if user is logged in
 function isLoggedIn(req,res, next){
 	if(req.isAuthenticated()){
