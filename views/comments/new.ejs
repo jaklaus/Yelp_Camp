@@ -5,7 +5,7 @@
 
 	<form action="/campgrounds/<%= campground._id %>/comments" method="POST" class="campground-form">
 	  <div class="form-group">
-	    <input type="text" name="commentBody" placeholder="Comment Here" class="form-control">
+	    <input type="text" name="commentBody" placeholder="Comment Here" class="form-control" maxlength="300">
 	  </div>
 	  <button type="submit" class="btn btn-block btn-success">Submit</button>
 	</form>

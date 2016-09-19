@@ -5,13 +5,13 @@
 
 	<form action="/campgrounds" method="POST" class="campground-form">
 	  <div class="form-group">
-	    <input type="text" name="campgroundName" placeholder="Campground Name" class="form-control">
+	    <input type="text" name="campgroundName" placeholder="Campground Name" class="form-control" maxlength="1000">
 	  </div>
 	  <div class="form-group">
-	    <input type="text" name="campgroundImg" placeholder="Image Link" class="form-control">
+	    <input type="text" name="campgroundImg" placeholder="Image Link" class="form-control" maxlength="1000">
 	  </div>
 	  <div class="form-group">
-	    <input type="text" name="campgroundDescription" placeholder="Description" class="form-control">
+	    <input type="text" name="campgroundDescription" placeholder="Description" class="form-control" maxlength="5000">
 	  </div>
 	  <button type="submit" class="btn btn-block btn-success">Submit</button>
 	</form>

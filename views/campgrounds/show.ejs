@@ -20,9 +20,9 @@
 				<h3 class="pull-left"><%= campground.name %></h3>
 				<p id="campground-description"><%= campground.description %></p>
 				
-				<div id="edit-buttons">
+				<div class="edit-buttons">
 					<% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
-						<form id="delete-button" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+						<form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
 						<button class="btn btn-danger btn-xs">DELETE</button>
 						</form>
 						<a class="btn btn-warning btn-xs" href="/campgrounds/<%= campground._id %>/edit">EDIT</a>
@@ -48,7 +48,15 @@
 				<div id="comment-body">
 					<p><%= comment.body %></p>
 				</div>
-			<% }) %>
+				<div class="edit-buttons">
+					<% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+						<form action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+						<button class="btn btn-danger btn-xs">DELETE</button>
+						</form>
+						<a class="btn btn-warning btn-xs" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">EDIT</a>
+					<% } %>
+				</div>
+			<% }); %>
 	  	</div>
 	  	
 	  	

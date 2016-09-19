@@ -98,7 +98,7 @@ function isLoggedIn(req,res, next){
 	}
 }
 
-// check campground ownership
+// check ownership
 function ownerAuth(req, res, next){
 	if(req.isAuthenticated()){
 		Campground.findById(req.params.id, function(err,campground){
