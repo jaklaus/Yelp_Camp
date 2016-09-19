@@ -10,6 +10,7 @@ var express = require('express'),
 	expressSession = require('express-session'),
 	User = require('./models/user'),
 	middlewareObj = require('./middleware/index'),
+	flash = require('connect-flash');
 	methodOverride = require('method-override');
 
 // require ROUTES
@@ -24,6 +25,7 @@ mongoose.connect("mongodb://localhost/yelp_camp");
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
+app.use(flash());
 
 // add moment js
 moment().format();
@@ -44,6 +46,8 @@ passport.deserializeUser(User.deserializeUser());
 // add currentUser to all routes
 app.use(function(req, res, next){
 	res.locals.currentUser = req.user;
+	res.locals.error = req.flash('error');
+	res.locals.success = req.flash('success');
 	next();
 });
 

@@ -29,10 +29,11 @@ router.post('/', middlewareObj.isLoggedIn, function(req,res){
 		} else {
 			Comment.create(newComment, function(err, comment){
 				if(err){
-					console.log(err);
+					req.flash('error', 'Comment could not be created');
 				} else {
 					campground.comments.push(comment);
 					campground.save();
+					req.flash('success', 'Successfully created comment.');
 					res.redirect('/campgrounds/'+ campground._id);
 				}
 			});
@@ -50,6 +51,7 @@ router.get('/:commentId/edit', middlewareObj.checkCommentOwner,  function(req,re
 // COMMENT UPDATE ROUTE
 router.put('/:commentId', middlewareObj.checkCommentOwner, function(req, res){
 	Comment.findByIdAndUpdate(req.params.commentId, req.body.comment, function(err, updatedComment){
+			req.flash('success', 'Comment successfully edited.');
 			res.redirect('/campgrounds/' + req.params.id);
 		
 	});
@@ -59,6 +61,7 @@ router.put('/:commentId', middlewareObj.checkCommentOwner, function(req, res){
 
 router.delete('/:commentId', middlewareObj.checkCommentOwner, function(req, res){
 	Comment.findByIdAndRemove(req.params.commentId, function(err, comment){
+		req.flash('success', 'Comment successfully deleted.');
 		res.redirect('/campgrounds/' + req.params.id);
 	});
 });
