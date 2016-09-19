@@ -9,13 +9,13 @@ var express = require('express'),
 	LocalStrategy = require('passport-local'),
 	expressSession = require('express-session'),
 	User = require('./models/user'),
-	seedDB = require('./seed'),
+	middlewareObj = require('./middleware/index'),
 	methodOverride = require('method-override');
 
 // require ROUTES
 var campgroundRoutes = require('./routes/campgrounds'),
 	commentRoutes = require('./routes/comments'),
-	authRoutes = require('./routes/authenticate')
+	authRoutes = require('./routes/authenticate');
 
 // connect to Database
 mongoose.connect("mongodb://localhost/yelp_camp");
@@ -24,9 +24,6 @@ mongoose.connect("mongodb://localhost/yelp_camp");
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
-
-// seed database
-// seedDB();
 
 // add moment js
 moment().format();
