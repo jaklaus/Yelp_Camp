@@ -9,7 +9,8 @@ var express = require('express'),
 	LocalStrategy = require('passport-local'),
 	expressSession = require('express-session'),
 	User = require('./models/user'),
-	seedDB = require('./seed');
+	seedDB = require('./seed'),
+	methodOverride = require('method-override');
 
 // require ROUTES
 var campgroundRoutes = require('./routes/campgrounds'),
@@ -44,10 +45,13 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // add currentUser to all routes
-app.use(function(req,res, next){
+app.use(function(req, res, next){
 	res.locals.currentUser = req.user;
 	next();
 });
+
+// methodOverride POST having ?_method=DELETE 
+app.use(methodOverride('_method'))
 
 // ROOT ROUTE
 app.get('/', function(req,res){

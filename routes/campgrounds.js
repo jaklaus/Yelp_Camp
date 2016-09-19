@@ -59,6 +59,35 @@ router.get("/:id", function(req,res){
 	});
 });
 
+// EDIT ROUTE
+// EDIT PAGE
+router.get('/:id/edit', function(req,res){
+	var campgroundId = req.params.id;
+
+	Campground.findById(campgroundId).populate("comments").exec(function(err,campground){
+		if(err){
+			console.log(err);
+			res.redirect('/campgrounds/' + campgroundId);
+		} else {
+			res.render("campgrounds/edit", {campground:campground, moment: moment});
+		}
+	});
+});
+
+// UPDATE ROUTE
+router.put('/:id', function(req, res){
+	var campgroundId = req.params.id;
+	var campground = req.body.campground;
+	// var campgroundName = req.body.campground.name;
+	// var campgroundImg = req.body.campground.img;
+	// var campgroundDescription = req.body.campground.description;
+	Campground.findByIdAndUpdate(campgroundId, campground, function(err,updateCampground){
+		console.log(updateCampground);
+		res.redirect('/campgrounds/' + campgroundId);
+	});
+
+});
+
 // function to check if user is logged in
 function isLoggedIn(req,res, next){
 	if(req.isAuthenticated()){

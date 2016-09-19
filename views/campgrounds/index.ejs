@@ -10,10 +10,10 @@
   	<%campgrounds.forEach(function(campground){ %>
   		<div class="col-sm-6 col-md-3">
   			<div  class="thumbnail">
-      			<img src="<%= campground.image %>">
+      			<a href="/campgrounds/<%= campground._id %>"><img src="<%= campground.image %>"></a>
       			<div class="caption text-center">
 			        <h3><%= campground.name %></h3>
-			        <p><a href="/campgrounds/<%= campground._id %>" class="btn btn-primary" role="button">Button</a>
+			        <p><a href="/campgrounds/<%= campground._id %>" class="btn btn-primary" role="button">View</a>
 		     	</div>
       		</div>
       		

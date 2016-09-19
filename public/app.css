@@ -69,3 +69,11 @@ div.thumbnail {
 #campground-description {
 	clear: both;
 }
+
+.thumbnail img{
+	min-height: 13em;
+}
+
+ul.footer-nav {
+	margin: 0 2em;
+}

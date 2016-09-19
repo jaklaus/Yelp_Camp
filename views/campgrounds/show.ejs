@@ -28,17 +28,18 @@
 	  			<a class="btn btn-primary btn-sm" href="/campgrounds/<%= campground._id %>/comments/new">New Comment</a>
 	  		</div>
 			<% campground.comments.forEach(function(comment){ %>
-			<div class="comment-header">
-				
-				<p id="comment-author"><strong><%= comment.author.username %></strong></p>
-				<p id="comment-date"><strong><%= moment(comment.date).format('MM/DD/YYYY') %></strong></p>
-			</div>
-			<div id="comment-body">
-				<p><%= comment.body %></p>
-			</div>
-			
+				<div class="comment-header">
+					
+					<p id="comment-author"><strong><%= comment.author.username %></strong></p>
+					<p id="comment-date"><strong><%= moment(comment.date).format('MM/DD/YYYY') %></strong></p>
+				</div>
+				<div id="comment-body">
+					<p><%= comment.body %></p>
+				</div>
 			<% }) %>
 	  	</div>
+	  	<a href="">DELETE</a>
+	  	<a href="/campgrounds/<%= campground._id %>/edit">EDIT</a>
 	</div>
   	</div>
   		
