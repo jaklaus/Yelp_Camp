@@ -86,3 +86,8 @@ ul.footer-nav {
 .edit-buttons button {
 	margin-right: 1em;
 }
+
+#edit-image{
+	width: 60%;
+	margin: 0 auto;
+}
