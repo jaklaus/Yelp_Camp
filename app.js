@@ -19,7 +19,7 @@ var campgroundRoutes = require('./routes/campgrounds'),
 	authRoutes = require('./routes/authenticate');
 
 // connect to Database
-mongoose.connect("mongodb://heroku_yelpcamp:hcamp@ds035856.mlab.com:35856/heroku_yelpcampv2");
+mongoose.connect("mongodb://heroku_yelpcamp:ewZ6SJktQ713mGoW@ds147995.mlab.com:47995/jkcreative_yelpcamp");
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
