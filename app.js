@@ -18,8 +18,17 @@ var campgroundRoutes = require('./routes/campgrounds'),
 	commentRoutes = require('./routes/comments'),
 	authRoutes = require('./routes/authenticate');
 
-// connect to Database
-mongoose.connect("mongodb://heroku_yelpcamp:ewZ6SJktQ713mGoW@ds147995.mlab.com:47995/jkcreative_yelpcamp");
+var port;
+var url = process.env.DATABASEURL || 'mongodb://localhost/yelp_camp'
+
+if(url === 'mongodb://localhost/yelp_camp'){
+	port = 3000;
+} else {
+	port = process.env.PORT, process.env.IP;
+}
+console.log(port);
+	// mongodb://heroku_yelpcamp:ewZ6SJktQ713mGoW@ds147995.mlab.com:47995/jkcreative_yelpcamp
+	mongoose.connect(url);
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -64,6 +73,6 @@ app.use('/campgrounds/:id/comments', commentRoutes);
 app.use('/campgrounds', campgroundRoutes);
 app.use(authRoutes);
 
-app.listen(process.env.PORT, process.env.IP, function(res,req){
-	console.log("yelp camp server running on port");
+app.listen(port, function(res,req){
+	console.log("yelp camp server running!");
 });
