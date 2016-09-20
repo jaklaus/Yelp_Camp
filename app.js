@@ -21,14 +21,14 @@ var campgroundRoutes = require('./routes/campgrounds'),
 var port;
 var url = process.env.DATABASEURL || 'mongodb://localhost/yelp_camp'
 
+// assign port based on local or online database(development or production site)
 if(url === 'mongodb://localhost/yelp_camp'){
 	port = 3000;
 } else {
 	port = process.env.PORT, process.env.IP;
 }
-console.log(port);
-	// mongodb://heroku_yelpcamp:ewZ6SJktQ713mGoW@ds147995.mlab.com:47995/jkcreative_yelpcamp
-	mongoose.connect(url);
+// Connect to database
+mongoose.connect(url);
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
