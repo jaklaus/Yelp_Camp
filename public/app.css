@@ -1,10 +1,54 @@
-#page-body {
-	padding-bottom: 10em;
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+}
+
+
+.front-image {
+	width: 100%;
+	height: 100%;
+	margin-top: -3em;
+	background-image: url('../assets/images/front-image.jpeg');
+	background-size: cover;
+	position: fixed;
+	opacity: 0.7;
+}
+
+.front-div{
+	text-align: center;
+	color: #222;
+	position: absolute;
+	z-index: 5;
+	margin: 10em 0 auto;
+	width: 100%;
+}
+
+.front-div a {
+	margin-top: 2em;
+}
+
+
+.front-div h1{
+	font-size: 8em;
+}
+
+.front-div h3{
+	font-size: 4em;
 }
 
 #campground-row {
 	display: flex;
 	flex-wrap: wrap;
+	margin-bottom: 5em;
+}
+
+div.row{
+	margin-bottom: 5em; 
 }
 
 form.campground-form {
@@ -18,7 +62,15 @@ form.campground-form {
 
 nav.navbar {
 	border-radius: 0;
+	z-index: 5;
 }
+
+@media screen and (max-width: 50em) {
+	nav.navbar-fixed-bottom {
+		display: none;
+	}
+}
+
 
 div.btn-group-vertical {
 	display: block;

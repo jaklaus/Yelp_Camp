@@ -1,23 +1,30 @@
+<% if(home !== '/'){ %>
+    <nav class="navbar navbar-default navbar-fixed-bottom" id="footer-nav">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+         <ul class="nav navbar-nav footer-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/campgrounds">Campgrounds</a></li>
+            <% if(!currentUser){ %>
+             <% } else { %>
+                <li><a href="/campgrounds/new">New Camp</a></li>
+             <% } %>
+          </ul>
+        <!-- Right Nav Area -->
+          <ul class="nav navbar-nav navbar-right footer-nav">
+            <% if(!currentUser){ %>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Sign Up</a></li>
+             <% } else { %>
+                <li><a href="/logout">Log Out</a></li>
+                <li><a href="#">Signed in as <strong><%= currentUser.username %></strong></a></li>
+             <% } %>
+          </ul>
+          </div>
+    </nav>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-     <ul class="nav navbar-nav footer-nav">
-        <li><a href="/">Home</a></li>
-        <li><a href="/campgrounds">Campgrounds</a></li>
-        <% if(!currentUser){ %>
-         <% } else { %>
-            <li><a href="/campgrounds/new">New Camp</a></li>
-         <% } %>
-      </ul>
-    <!-- Right Nav Area -->
-      <ul class="nav navbar-nav navbar-right footer-nav">
-        <% if(!currentUser){ %>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Sign Up</a></li>
-         <% } else { %>
-            <li><a href="/logout">Log Out</a></li>
-            <li><a href="#">Signed in as <strong><%= currentUser.username %></strong></a></li>
-         <% } %>
-      </ul>
-</nav>
+   <% } %>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 	</body>
 </html>
