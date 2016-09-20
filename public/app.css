@@ -80,7 +80,7 @@ ul.footer-nav {
 
 .edit-buttons {
 	display: inline-flex;
-	margin: 1em 0em 1em 0em;
+	margin-bottom: 1em;
 }
 
 .edit-buttons button {

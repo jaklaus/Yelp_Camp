@@ -41,7 +41,7 @@ router.post('/', middlewareObj.isLoggedIn, function(req,res){
 		if(err){
 			req.flash('error', 'Could not create campground.');
 		} else {
-			req.flash('success', 'Campground <strong>' + campground.name + '</strong> successfully added.');
+			req.flash('success', 'Campground ' + campground.name + ' successfully added.');
 			res.redirect('/campgrounds');
 		}
 	});

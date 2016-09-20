@@ -23,9 +23,9 @@
 				<div class="edit-buttons">
 					<% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
 						<form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
-						<button class="btn btn-danger btn-xs">DELETE</button>
+						<button class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></button>
 						</form>
-						<a class="btn btn-warning btn-xs" href="/campgrounds/<%= campground._id %>/edit">EDIT</a>
+						<a class="btn btn-warning btn-xs" href="/campgrounds/<%= campground._id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 					<% } %>
 				</div>
 				
@@ -51,9 +51,9 @@
 				<div class="edit-buttons">
 					<% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
 						<form action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-						<button class="btn btn-danger btn-xs">DELETE</button>
+						<button class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></button>
 						</form>
-						<a class="btn btn-warning btn-xs" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">EDIT</a>
+						<a class="btn btn-warning btn-xs" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 					<% } %>
 				</div>
 			<% }); %>

@@ -1,11 +1,11 @@
 <% include ../partials/header %>
 
 <div class="container">
-	<h1 class="text-center">Edit <%= comment.name %></h1>
+	<h1 class="text-center">Edit comment</h1>
 
 	<form action="/campgrounds/<%= campground %>/comments/<%= comment._id %>?_method=PUT" method="POST" class="campground-form">
 	  <div class="form-group">
-	    <input type="text" name="comment[body]" value ="<%= comment.body %>" class="form-control" maxlength="300">
+	    <textarea name="comment[body]" class="form-control" maxlength="300" rows="5"><%= comment.body %></textarea>
 	  </div>
 	  <button type="submit" class="btn btn-block btn-success">Submit</button>
 	</form>
